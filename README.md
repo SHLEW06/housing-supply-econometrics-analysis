@@ -126,12 +126,18 @@ Across 530 U.S. MSAs over 2019â€“2024, building-permit activity is positively â€
 
 ## 8. Reproducibility
 
+To reproduce the analysis locally, clone the repository, create a virtual environment, install the required dependencies, and open the Jupyter notebook:
+
 ```bash
-git clone https://github.com/SHLEW06/ECON-320-Final-Project-Group-5.git
-cd ECON-320-Final-Project-Group-5
-python -m venv venv && source venv/bin/activate
+git clone https://github.com/SHLEW06/Housing-Supply-and-Home-Prices-Evidence-from-U.S.-Metropolitan-Areas.git
+cd Housing-Supply-and-Home-Prices-Evidence-from-U.S.-Metropolitan-Areas
+
+python -m venv venv
+source venv/bin/activate   # macOS/Linux
+
 pip install -r requirements.txt
 jupyter notebook notebooks/housing_supply_and_home_prices.ipynb
+
 ```
 
 The notebook is self-contained: it reads from `data/` and produces all tables, figures, and diagnostics in-place. All randomness is deterministic (no Monte Carlo); rerunning the notebook reproduces the numbers reported above exactly.
