@@ -5,6 +5,22 @@
 **Authors:** Tessa Butler, Siya Kumar, Ania Ting, Naman Keswani, Shunji Lewandowski
 **Course:** ECON 320 — Econometrics, Emory University
 
+[Read the rendered analysis](reports/housing_supply_and_home_prices.html) |
+[Open the notebook](notebooks/housing_supply_and_home_prices.ipynb) |
+[View the presentation](reports/presentation.pptx)
+
+## Results at a glance
+
+| Coverage | Final permit elasticity | Change after controls | Full-model fit |
+|---:|---:|---:|---:|
+| 530 MSAs, 2,036 MSA-years | +0.081 | 46% smaller than bivariate | R² = 0.577 |
+
+![Bivariate relationships between permits, income, and home prices](reports/assets/bivariate-relationships.png)
+
+*Metros with more permits also tend to have higher prices, but income is more
+strongly related to the price index. The regression results show why the simple
+permit-price relationship should not be read as a causal supply effect.*
+
 ---
 
 ## Abstract
