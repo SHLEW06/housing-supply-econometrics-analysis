@@ -7,6 +7,7 @@
 
 [Read the rendered analysis](reports/housing_supply_and_home_prices.html) |
 [Open the notebook](notebooks/housing_supply_and_home_prices.ipynb) |
+[Run the core models](scripts/run_core_analysis.py) |
 [View the presentation](reports/presentation.pptx)
 
 ## Results at a glance
@@ -115,7 +116,7 @@ The notebook executes the following pipeline end-to-end:
 
 ## 6. Conclusion
 
-Across 530 U.S. MSAs over 2019–2024, building-permit activity is positively — not negatively — associated with home prices in OLS. The result is not an artifact of any single specification: it survives alternative dependent variables, the exclusion of zero-permit MSAs, and trimming of permit outliers. The most plausible interpretation is that demand-side pressures (income growth, in-migration to high-amenity metros) confound the cross-sectional supply signal and that permits are themselves endogenous to expected prices. Recovering the *causal* supply elasticity requires an instrument for local housing-supply constraints — for example, the geographic supply measures of Saiz (2010) or the regulatory indices of Glaeser, Gyourko, and Saks (2005). The policy implication is that supply expansion alone is unlikely to deliver large price relief in the short run without complementary demand-side instruments such as income support, mortgage-access reform, or targeted subsidies.
+Across 530 U.S. MSAs over 2019–2024, building-permit activity is positively associated with home prices in OLS. The result survives an alternative dependent variable, the exclusion of zero-permit MSAs, and trimming of permit outliers. Demand-side pressure and reverse causality are plausible explanations: high-demand markets can sustain both more construction and higher prices. Because this design estimates an association, it does not show whether additional construction raises or lowers prices. Recovering a causal supply elasticity would require a stronger identification strategy, such as an instrument based on geographic or regulatory supply constraints.
 
 ## 7. Repository Structure
 
@@ -124,6 +125,9 @@ Across 530 U.S. MSAs over 2019–2024, building-permit activity is positively �
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
+├── .gitattributes                        # Marks rendered HTML as generated
+├── scripts/
+│   └── run_core_analysis.py              # Reproduces the three headline regressions
 ├── notebooks/
 │   └── housing_supply_and_home_prices.ipynb   # End-to-end analysis (data prep, OLS, diagnostics, robustness)
 ├── data/
@@ -142,7 +146,7 @@ Across 530 U.S. MSAs over 2019–2024, building-permit activity is positively �
 
 ## 8. Reproducibility
 
-To reproduce the analysis locally, clone the repository, create a virtual environment, install the required dependencies, and open the Jupyter notebook:
+To reproduce the core estimates locally, clone the repository, create a virtual environment, install the dependencies, and run the Python entry point:
 
 ```bash
 git clone https://github.com/SHLEW06/housing-supply-econometrics-analysis.git
@@ -152,12 +156,18 @@ python -m venv venv
 source venv/bin/activate   # macOS/Linux
 
 pip install -r requirements.txt
+python scripts/run_core_analysis.py
+```
+
+The script prints the sample size and the three headline OLS specifications. To reproduce the figures, diagnostics, and robustness checks, open the full notebook:
+
+```bash
 jupyter notebook notebooks/housing_supply_and_home_prices.ipynb
 ```
 
-The notebook is self-contained: it reads from `data/` and produces all tables, figures, and diagnostics in-place. All randomness is deterministic (no Monte Carlo); rerunning the notebook reproduces the numbers reported above exactly.
+Both entry points read from the checked-in `data/` directory. The analysis has no stochastic step, so rerunning it reproduces the reported estimates.
 
-**Software.** Python 3.13, NumPy, pandas, matplotlib, SciPy, statsmodels. Exact versions are pinned in `requirements.txt`.
+**Software.** Python 3.13, NumPy, pandas, matplotlib, SciPy, and statsmodels. Dependency constraints are listed in `requirements.txt`.
 
 ## 9. References
 
